@@ -2,18 +2,24 @@
   <div id="app">
     <header-layout />
     <search-page-layout />
+    <sidebar />
+    <notification />
   </div>
 </template>
 
 <script>
 import SearchPageLayout from './components/search-page-layout';
 import headerLayout from './components/header';
+import Notification from './components/notification';
+import Sidebar from './components/sidebar';
 
 export default {
   name: 'App',
   components: {
     SearchPageLayout,
     headerLayout,
+    Notification,
+    Sidebar,
   },
 };
 </script>

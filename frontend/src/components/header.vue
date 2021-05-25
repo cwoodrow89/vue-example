@@ -6,26 +6,37 @@
     >
       Wexler
     </p>
-    <div class="Counter">
+    <div
+      class="Counter"
+      @click="onClickCounter"
+    >
       <i class="fas fa-inbox" />
       <span class="Counter-number">
-        0
+        {{ shortlistLength }}
       </span>
     </div>
   </header>
 </template>
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
 
   data() {
     return {};
   },
 
+  computed: {
+    ...mapGetters(['shortlistLength']),
+  },
+
   mounted() {
   },
 
   methods: {
-
+    onClickCounter() {
+      this.$store.commit('toggleSidebar');
+    },
   },
 };
 </script>
@@ -50,6 +61,7 @@ export default {
 
   .Counter {
     position: relative;
+    cursor: pointer;
   }
 
   .Counter-number {
