@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       hide: true,
+      notificationTimeout: null,
       addingAnItem: null,
     };
   },
@@ -76,9 +77,7 @@ export default {
   watch: {
     shortlistLength(newLength, prevLength) {
       this.addingAnItem = newLength > prevLength;
-      if (this.hide) {
-        this.displayNotification();
-      }
+      this.displayNotification();
     },
   },
 
@@ -88,7 +87,8 @@ export default {
   methods: {
     displayNotification() {
       this.hide = false;
-      setTimeout(() => { this.hide = true; }, 3000);
+      clearTimeout(this.notificationTimeout);
+      this.notificationTimeout = setTimeout(() => { this.hide = true; }, 3000);
     },
     onFollow() {
       this.$store.commit('addToFollowing', { company_id: this.latestShortlistedItem.company_id, company_name: this.latestShortlistedItem.company_name });
